@@ -5,8 +5,8 @@ function main() {
 }
 
 function createTable() {
-    let mainContainer = document.getElementById("main-container");
-    let images = createImagesList();
+    const mainContainer = document.getElementById("main-container");
+    const images = createImagesList();
     let indexCounter = 0;
     for (let i = 0; i < 4; i++) {
         let row = document.createElement("div");
@@ -44,10 +44,10 @@ function createImagesList() {
 let startTimer = false;
 
 function addEvents() {
-    let elements = document.querySelectorAll(".col");
+    const elements = document.querySelectorAll(".col");
     for (let element of elements) {
         element.addEventListener("click", () => {
-            let coordinates = getCoordinates(element.id);
+            const coordinates = getCoordinates(element.id);
             move(coordinates, element, elements);
             if (startTimer === false) {
                 timer();
@@ -58,14 +58,14 @@ function addEvents() {
 }
 
 function getCoordinates(element) {
-    let split = element.split("-");
+    const split = element.split("-");
     const row = split[1];
     const col = split[2];
     return [row, col];
 }
 
 function move(coordinates, actualElement, elements) {
-    let directions = getDirection(coordinates);
+    const directions = getDirection(coordinates);
     for (let element of directions) {
         if (element != null) {
             if (element.classList.contains("empty")) {
@@ -78,18 +78,18 @@ function move(coordinates, actualElement, elements) {
 }
 
 function getDirection(coordinates) {
-    let row = parseInt(coordinates[0]);
-    let col = parseInt(coordinates[1]);
+    const row = parseInt(coordinates[0]);
+    const col = parseInt(coordinates[1]);
 
-    let aboveElement = document.getElementById(`coordinate-${row - 1}-${col}`);
-    let underElement = document.getElementById(`coordinate-${row + 1}-${col}`);
-    let rightElement = document.getElementById(`coordinate-${row}-${col - 1}`);
-    let leftElement = document.getElementById(`coordinate-${row}-${col + 1}`);
+    const aboveElement = document.getElementById(`coordinate-${row - 1}-${col}`);
+    const underElement = document.getElementById(`coordinate-${row + 1}-${col}`);
+    const rightElement = document.getElementById(`coordinate-${row}-${col - 1}`);
+    const leftElement = document.getElementById(`coordinate-${row}-${col + 1}`);
     return [aboveElement, underElement, rightElement, leftElement];
 }
 
 function switchContent(element, actualElement) {
-    let actualElementContent = actualElement.innerHTML;
+    const actualElementContent = actualElement.innerHTML;
     actualElement.innerHTML = element.innerHTML;
     element.innerHTML = actualElementContent;
     actualElement.classList.add("empty");
@@ -98,23 +98,23 @@ function switchContent(element, actualElement) {
 
 function checkTable(elements) {
     let counter = 1;
-    for (let element of elements){
-        let currentPicture = `<img src="Pic/img(${counter}).png" alt="">`;
-        if (element.innerHTML !== currentPicture){
+    for (let element of elements) {
+        const currentPicture = `<img src="Pic/img(${counter}).png" alt="">`;
+        if (element.innerHTML !== currentPicture) {
             break;
-        }else{
+        } else {
             counter++;
         }
     }
-    if (counter === 17){
+    if (counter === 17) {
         console.log("You won!");
     }
 }
 
 //this is not my timer
 function timer() {
-    let minutesLabel = document.getElementById("minutes");
-    let secondsLabel = document.getElementById("seconds");
+    const minutesLabel = document.getElementById("minutes");
+    const secondsLabel = document.getElementById("seconds");
     let totalSeconds = 0;
     setInterval(setTime, 1000);
 
@@ -135,7 +135,7 @@ function timer() {
 }
 
 function restart() {
-    let button = document.getElementById("restart");
+    const button = document.getElementById("restart");
     button.addEventListener("click", () => {
         location.reload();
     })
@@ -145,7 +145,7 @@ let numberOfClicks = 0;
 
 function clickCounter() {
     numberOfClicks++;
-    let clickDisplay = document.getElementById("clickDisplay")
+    const clickDisplay = document.getElementById("clickDisplay")
     clickDisplay.innerHTML = "" + numberOfClicks;
 }
 
